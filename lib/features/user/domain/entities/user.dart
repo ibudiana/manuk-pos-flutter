@@ -8,15 +8,24 @@ class User extends Equatable {
   final String name;
   final String email;
   final String phone;
+  final bool isActive;
+  final int loginCount;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
-  const User(
-      {required this.id,
-      required this.roleId,
-      required this.branchId,
-      required this.username,
-      required this.name,
-      required this.email,
-      required this.phone});
+  const User({
+    required this.id,
+    required this.roleId,
+    required this.branchId,
+    required this.username,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.isActive,
+    required this.loginCount,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
   @override
   List<Object?> get props => [
@@ -27,5 +36,9 @@ class User extends Equatable {
         name,
         email,
         phone,
+        isActive,
+        loginCount,
+        createdAt,
+        updatedAt,
       ];
 }

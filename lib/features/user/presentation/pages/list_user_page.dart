@@ -16,13 +16,27 @@ class ListUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserBloc>(
-      create: (_) =>
-          sl<UserBloc>()..add(GetAllUsersEvent()), // <- langsung load user
+      create: (_) => sl<UserBloc>()..add(GetAllUsersEvent()),
       child: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
           if (state is UserOperationSuccess) {
             // Trigger reload data when user operation is successful
             context.read<UserBloc>().add(GetAllUsersEvent());
+          }
+          if (state is UserStateError) {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text("Error"),
+                content: Text("List User failed to load"),
+                actions: [
+                  TextButton(
+                    onPressed: () => context.go('/'),
+                    child: Text("OK"),
+                  ),
+                ],
+              ),
+            );
           }
         },
         child: const ListUserView(), // Pisahkan UI ke widget sendiri
@@ -119,9 +133,10 @@ class ListUserView extends StatelessWidget {
                   );
                 },
               );
-            } else if (state is UserStateError) {
-              return Center(child: Text(state.message));
             }
+            // else if (state is UserStateError) {
+            //   return Center(child: Text(state.message));
+            // }
 
             return const Center(child: Text("No data available"));
           },

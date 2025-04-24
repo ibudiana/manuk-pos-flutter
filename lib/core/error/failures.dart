@@ -6,17 +6,17 @@ abstract class Failures {
 // 🔥 Contoh turunan yang spesifik:
 
 class ServerFailure extends Failures {
-  const ServerFailure([String message = 'Server Failure']) : super(message);
+  const ServerFailure([super.message = 'Server Failure']);
 }
 
 class CacheFailure extends Failures {
-  const CacheFailure([String message = 'Cache Failure']) : super(message);
+  const CacheFailure([super.message = 'Cache Failure']);
 }
 
 class NetworkFailure extends Failures {
-  const NetworkFailure([String message = 'Network Failure']) : super(message);
+  const NetworkFailure([super.message = 'Network Failure']);
 }
 
 class UnknownFailure extends Failures {
-  const UnknownFailure([String message = 'Unknown Failure']) : super(message);
+  const UnknownFailure([super.message = 'Unknown Failure']);
 }

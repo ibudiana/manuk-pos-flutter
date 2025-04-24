@@ -1,0 +1,93 @@
+import 'package:manuk_pos/features/discount/domain/entities/discount.dart';
+
+class DiscountModel extends Discount {
+  const DiscountModel({
+    required int id,
+    required int categoryId,
+    required int productId,
+    required int customerId,
+    required String name,
+    required String code,
+    required String description,
+    required String discountType,
+    required double discountValue,
+    required double minPurchase,
+    required double maxDiscount,
+    required DateTime startDate,
+    required DateTime endDate,
+    required int usageLimit,
+    required int usageCount,
+    required bool isActive,
+    required String appliesTo,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+  }) : super(
+          id: id,
+          categoryId: categoryId,
+          productId: productId,
+          customerId: customerId,
+          name: name,
+          code: code,
+          description: description,
+          discountType: discountType,
+          discountValue: discountValue,
+          minPurchase: minPurchase,
+          maxDiscount: maxDiscount,
+          startDate: startDate,
+          endDate: endDate,
+          usageLimit: usageLimit,
+          usageCount: usageCount,
+          isActive: isActive,
+          appliesTo: appliesTo,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
+        );
+
+  factory DiscountModel.fromJson(Map<String, dynamic> json) {
+    return DiscountModel(
+      id: json['id'],
+      categoryId: json['category_id'],
+      productId: json['product_id'],
+      customerId: json['customer_id'],
+      name: json['name'],
+      code: json['code'],
+      description: json['description'],
+      discountType: json['discount_type'],
+      discountValue: json['discount_value'].toDouble(),
+      minPurchase: json['min_purchase'].toDouble(),
+      maxDiscount: json['max_discount'].toDouble(),
+      startDate: DateTime.parse(json['start_date']),
+      endDate: DateTime.parse(json['end_date']),
+      usageLimit: json['usage_limit'],
+      usageCount: json['usage_count'],
+      isActive: json['is_active'],
+      appliesTo: json['applies_to'],
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'category_id': categoryId,
+      'product_id': productId,
+      'customer_id': customerId,
+      'name': name,
+      'code': code,
+      'description': description,
+      'discount_type': discountType,
+      'discount_value': discountValue,
+      'min_purchase': minPurchase,
+      'max_discount': maxDiscount,
+      'start_date': startDate.toIso8601String(),
+      'end_date': endDate.toIso8601String(),
+      'usage_limit': usageLimit,
+      'usage_count': usageCount,
+      'is_active': isActive,
+      'applies_to': appliesTo,
+      'created_at': createdAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
+    };
+  }
+}

@@ -88,16 +88,62 @@ class _AddBranchPageState extends State<AddBranchPage> {
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 16),
-                CommonTextField('Branch Name',
-                    controller: nameController, label: 'Branch Name'),
-                CommonTextField('Code',
-                    controller: codeController, label: 'Code'),
-                CommonTextField('Address',
-                    controller: addressController, label: 'Address'),
-                CommonTextField('Phone',
-                    controller: phoneController, label: 'Phone'),
-                CommonTextField('Email',
-                    controller: emailController, label: 'Email'),
+                CommonTextField(
+                  label: 'Branch Name',
+                  controller: nameController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Branch Name is required';
+                    }
+                    return null;
+                  },
+                ),
+                CommonTextField(
+                  label: 'Code',
+                  controller: codeController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Code is required';
+                    }
+                    return null;
+                  },
+                ),
+                CommonTextField(
+                  label: 'Address',
+                  controller: addressController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Address is required';
+                    }
+                    return null;
+                  },
+                ),
+                CommonTextField(
+                  label: 'Phone',
+                  controller: phoneController,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Phone is required';
+                    }
+                    if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                      return 'Only numbers are allowed';
+                    }
+                    return null;
+                  },
+                ),
+                CommonTextField(
+                  label: 'Email',
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Email is required';
+                    }
+                    if (!value.contains('@')) return 'Invalid email';
+                    return null;
+                  },
+                ),
                 SwitchListTile(
                   title: const Text('Main Branch?'),
                   value: isMainBranch,

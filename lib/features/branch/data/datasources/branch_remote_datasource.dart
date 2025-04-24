@@ -50,6 +50,9 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
       'name': branch.name,
       'address': branch.address,
       'phone': branch.phone,
+      "email": branch.email,
+      "is_main_branch": branch.isMainBranch,
+      "is_active": branch.isActive,
     };
 
     final response = await http
@@ -75,6 +78,9 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
       'name': branch.name,
       'address': branch.address,
       'phone': branch.phone,
+      "email": branch.email,
+      "is_main_branch": branch.isMainBranch,
+      "is_active": branch.isActive,
     };
 
     final response = await http

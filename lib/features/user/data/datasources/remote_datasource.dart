@@ -55,8 +55,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       'username': user.username,
       'email': user.email,
       'phone': user.phone,
-      'branchId': user.branchId,
-      'roleId': user.roleId,
+      'branch_id': user.branchId,
+      'role_id': user.roleId,
+      'is_active': user.isActive,
+      'login_count': user.loginCount,
     };
 
     // Mengirimkan request PATCH dengan body dalam format JSON
@@ -89,8 +91,10 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
       'username': user.username,
       'email': user.email,
       'phone': user.phone,
-      'branchId': user.branchId,
-      'roleId': user.roleId,
+      'branch_id': user.branchId,
+      'role_id': user.roleId,
+      'is_active': user.isActive,
+      'login_count': user.loginCount,
     };
     // Mengirimkan request POST dengan body dalam format JSON
     final response = await http

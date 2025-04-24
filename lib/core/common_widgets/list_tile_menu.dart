@@ -6,6 +6,7 @@ class CommonListTileWithMenu extends StatelessWidget {
   final Function(String) onSelected;
   final List<String> menuItems;
   final Color? tileColor;
+  final String? subtitle;
 
   const CommonListTileWithMenu({
     super.key,
@@ -13,6 +14,7 @@ class CommonListTileWithMenu extends StatelessWidget {
     required this.onSelected,
     this.menuItems = const ['Edit', 'Delete'],
     this.tileColor,
+    this.subtitle,
   });
 
   @override
@@ -20,6 +22,7 @@ class CommonListTileWithMenu extends StatelessWidget {
     return ListTile(
       tileColor: AppTheme.backgroundPrimaryColor,
       title: Text(title),
+      subtitle: subtitle != null ? Text(subtitle!) : null,
       trailing: PopupMenuButton<String>(
         onSelected: onSelected,
         itemBuilder: (context) => menuItems

@@ -15,12 +15,12 @@ class GetAllBranchEvent extends BranchEvent {
 }
 
 class GetBranchByIdEvent extends BranchEvent {
-  final int BranchId;
+  final int branchId;
 
-  const GetBranchByIdEvent(this.BranchId);
+  const GetBranchByIdEvent(this.branchId);
 
   @override
-  List<Object> get props => [BranchId];
+  List<Object> get props => [branchId];
 }
 
 class AddBranchEvent extends BranchEvent {
@@ -39,7 +39,7 @@ class UpdateBranchEvent extends BranchEvent {
 }
 
 class DeleteBranchEvent extends BranchEvent {
-  final int BranchId;
+  final int branchId;
 
-  const DeleteBranchEvent(this.BranchId);
+  const DeleteBranchEvent(this.branchId);
 }

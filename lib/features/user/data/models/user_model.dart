@@ -9,6 +9,10 @@ class UserModel extends User {
     required String name,
     required String email,
     required String phone,
+    required bool isActive,
+    required int loginCount,
+    required DateTime createdAt,
+    required DateTime updatedAt,
   }) : super(
           id: id,
           roleId: roleId,
@@ -17,6 +21,10 @@ class UserModel extends User {
           name: name,
           email: email,
           phone: phone,
+          isActive: isActive,
+          loginCount: loginCount,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
         );
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +36,10 @@ class UserModel extends User {
       name: json['name'],
       email: json['email'],
       phone: json['phone'],
+      isActive: json['is_active'],
+      loginCount: json['login_count'],
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
     );
   }
 
@@ -40,6 +52,10 @@ class UserModel extends User {
       'name': name,
       'email': email,
       'phone': phone,
+      'is_active': isActive,
+      'login_count': loginCount,
+      'created_at': createdAt.toIso8601String(),
+      'updated_at': updatedAt.toIso8601String(),
     };
   }
 }

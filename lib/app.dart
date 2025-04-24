@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manuk_pos/core/routes/app_routes.dart';
+import 'package:manuk_pos/features/discount/presentation/bloc/discount_bloc.dart';
+import 'package:manuk_pos/features/role/presentation/bloc/role_bloc.dart';
 import 'package:manuk_pos/features/user/presentation/bloc/user_bloc.dart';
 import 'package:manuk_pos/features/branch/presentation/bloc/branch_bloc.dart';
 import 'package:manuk_pos/service_locator.dart';
@@ -14,6 +16,8 @@ class ManukPosApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => sl<UserBloc>()),
         BlocProvider(create: (_) => sl<BranchBloc>()),
+        BlocProvider(create: (_) => sl<DiscountBloc>()),
+        BlocProvider(create: (_) => sl<RoleBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
