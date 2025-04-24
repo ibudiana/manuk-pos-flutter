@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manuk_pos/core/routes/app_routes.dart';
+import 'package:manuk_pos/features/category_product/presentation/bloc/category_product_bloc.dart';
 import 'package:manuk_pos/features/customer/presentation/bloc/customer_bloc.dart';
 import 'package:manuk_pos/features/discount/presentation/bloc/discount_bloc.dart';
 import 'package:manuk_pos/features/fee/presentation/bloc/fee_bloc.dart';
@@ -30,6 +31,7 @@ class ManukPosApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<SupplierBloc>()),
         BlocProvider(create: (_) => sl<CustomerBloc>()),
         BlocProvider(create: (_) => sl<ProductBloc>()),
+        BlocProvider(create: (_) => sl<CategoryBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

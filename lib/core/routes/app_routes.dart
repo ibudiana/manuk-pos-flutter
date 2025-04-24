@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:manuk_pos/features/branch/domain/entities/branch.dart';
 import 'package:manuk_pos/features/branch/presentation/pages/branch_page.dart';
 import 'package:manuk_pos/features/branch/presentation/pages/list_branch_page.dart';
+import 'package:manuk_pos/features/category_product/domain/entities/category_product_.dart';
+import 'package:manuk_pos/features/category_product/presentation/pages/category_product_page.dart';
+import 'package:manuk_pos/features/category_product/presentation/pages/list_category_product_page.dart';
 import 'package:manuk_pos/features/customer/domain/entities/customer.dart';
 import 'package:manuk_pos/features/customer/presentation/pages/customer_page.dart';
 import 'package:manuk_pos/features/customer/presentation/pages/list_customer_page.dart';
@@ -36,7 +39,7 @@ import 'package:manuk_pos/features/user/presentation/pages/list_user_page.dart';
 import 'package:manuk_pos/features/user/presentation/pages/user_page.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/inventory/product/list-product',
+  initialLocation: '/inventory/product/category/list-category',
   routes: [
     GoRoute(
       path: '/',
@@ -113,6 +116,22 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) {
             final product = state.extra as Product;
             return AddProductPage(product: product);
+          },
+        ),
+        // Category Product Routes (Child Routes under Product)
+        GoRoute(
+          path: 'product/category/list-category',
+          builder: (context, state) => const ListCategoryPage(),
+        ),
+        GoRoute(
+          path: 'product/category/add-category',
+          builder: (context, state) => const AddCategoryPage(),
+        ),
+        GoRoute(
+          path: 'product/category/edit-category',
+          builder: (context, state) {
+            final category = state.extra as Category;
+            return AddCategoryPage(category: category);
           },
         ),
       ],

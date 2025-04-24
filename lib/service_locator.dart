@@ -3,6 +3,14 @@ import 'package:manuk_pos/features/branch/domain/usecases/add_branch.dart';
 import 'package:manuk_pos/features/branch/domain/usecases/delete_branch.dart';
 import 'package:manuk_pos/features/branch/domain/usecases/get_branch.dart';
 import 'package:manuk_pos/features/branch/domain/usecases/update_branch.dart';
+import 'package:manuk_pos/features/category_product/data/datasources/category_product_remote_datasource.dart';
+import 'package:manuk_pos/features/category_product/domain/repositories/category_product_repository.dart';
+import 'package:manuk_pos/features/category_product/domain/usecases/add_category_product_.dart';
+import 'package:manuk_pos/features/category_product/domain/usecases/delete_category_product_.dart';
+import 'package:manuk_pos/features/category_product/domain/usecases/get_all_category_product_.dart';
+import 'package:manuk_pos/features/category_product/domain/usecases/get_category_product_.dart';
+import 'package:manuk_pos/features/category_product/domain/usecases/update_category_product_.dart';
+import 'package:manuk_pos/features/category_product/presentation/bloc/category_product_bloc.dart';
 import 'package:manuk_pos/features/customer/data/datasources/customer_remote_datasource.dart';
 import 'package:manuk_pos/features/customer/domain/repositories/customer_repository.dart';
 import 'package:manuk_pos/features/customer/domain/usecases/add_customer.dart';
@@ -223,4 +231,19 @@ Future<void> init() async {
   sl.registerLazySingleton<DeleteProduct>(() => DeleteProduct(sl()));
 
   sl.registerFactory(() => ProductBloc(sl(), sl(), sl(), sl(), sl()));
+
+  // Category
+  sl.registerLazySingleton<CategoryRemoteDataSource>(
+      () => CategoryRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<CategoryRepository>(
+      () => CategoryRepositoryImpl(remoteDataSource: sl()));
+
+  sl.registerLazySingleton<GetAllCategory>(() => GetAllCategory(sl()));
+  sl.registerLazySingleton<GetCategoryById>(() => GetCategoryById(sl()));
+  sl.registerLazySingleton<AddCategory>(() => AddCategory(sl()));
+  sl.registerLazySingleton<UpdateCategoryById>(() => UpdateCategoryById(sl()));
+  sl.registerLazySingleton<DeleteCategory>(() => DeleteCategory(sl()));
+
+  sl.registerFactory(() => CategoryBloc(sl(), sl(), sl(), sl(), sl()));
 }
