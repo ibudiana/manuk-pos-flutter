@@ -19,6 +19,9 @@ import 'package:manuk_pos/features/role/presentation/pages/role_page.dart';
 import 'package:manuk_pos/features/splash/splash_feature.dart';
 import 'package:manuk_pos/features/onboard/onboard_feature.dart';
 import 'package:manuk_pos/features/auth/auth_feature.dart';
+import 'package:manuk_pos/features/supplier/domain/entities/supplier.dart';
+import 'package:manuk_pos/features/supplier/presentation/pages/list_supplier_page.dart';
+import 'package:manuk_pos/features/supplier/presentation/pages/supplier_page.dart';
 import 'package:manuk_pos/features/tax/domain/entities/tax.dart';
 import 'package:manuk_pos/features/tax/presentation/pages/list_tax_page.dart';
 import 'package:manuk_pos/features/tax/presentation/pages/tax_page.dart';
@@ -27,7 +30,7 @@ import 'package:manuk_pos/features/user/presentation/pages/list_user_page.dart';
 import 'package:manuk_pos/features/user/presentation/pages/user_page.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/finance/list-loan',
+  initialLocation: '/databases/supplier/list-supplier',
   routes: [
     GoRoute(
       path: '/',
@@ -82,6 +85,29 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: 'profile',
           builder: (context, state) => const ProfilePage(),
+        ),
+      ],
+    ),
+    // Database Routes
+    GoRoute(
+      path: '/databases',
+      builder: (context, state) => const SizedBox.shrink(),
+      routes: [
+        // Supplier Routes
+        GoRoute(
+          path: '/supplier/list-supplier',
+          builder: (context, state) => const ListSupplierPage(),
+        ),
+        GoRoute(
+          path: '/supplier/add-supplier',
+          builder: (context, state) => const AddSupplierPage(),
+        ),
+        GoRoute(
+          path: '/supplier/edit-supplier',
+          builder: (context, state) {
+            final supplier = state.extra as Supplier;
+            return AddSupplierPage(supplier: supplier);
+          },
         ),
       ],
     ),

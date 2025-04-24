@@ -35,6 +35,14 @@ import 'package:manuk_pos/features/role/domain/usecases/get_all_role.dart';
 import 'package:manuk_pos/features/role/domain/usecases/get_role.dart';
 import 'package:manuk_pos/features/role/domain/usecases/update_role.dart';
 import 'package:manuk_pos/features/role/presentation/bloc/role_bloc.dart';
+import 'package:manuk_pos/features/supplier/data/datasources/supplier_remote_datasource.dart';
+import 'package:manuk_pos/features/supplier/domain/repositories/supplier_repository.dart';
+import 'package:manuk_pos/features/supplier/domain/usecases/add_supplier.dart';
+import 'package:manuk_pos/features/supplier/domain/usecases/delete_supplier.dart';
+import 'package:manuk_pos/features/supplier/domain/usecases/get_all_supplier.dart';
+import 'package:manuk_pos/features/supplier/domain/usecases/get_supplier.dart';
+import 'package:manuk_pos/features/supplier/domain/usecases/update_supplier.dart';
+import 'package:manuk_pos/features/supplier/presentation/bloc/supplier_bloc.dart';
 import 'package:manuk_pos/features/tax/data/datasources/tax_remote_datasource.dart';
 import 'package:manuk_pos/features/tax/domain/repositories/tax_repository.dart';
 import 'package:manuk_pos/features/tax/domain/usecases/add_tax.dart';
@@ -154,4 +162,19 @@ Future<void> init() async {
   sl.registerLazySingleton<DeleteFee>(() => DeleteFee(sl()));
 
   sl.registerFactory(() => FeeBloc(sl(), sl(), sl(), sl(), sl()));
+
+  // Supplier
+  sl.registerLazySingleton<SupplierRemoteDataSource>(
+      () => SupplierRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<SupplierRepository>(
+      () => SupplierRepositoryImpl(remoteDataSource: sl()));
+
+  sl.registerLazySingleton<GetAllSupplier>(() => GetAllSupplier(sl()));
+  sl.registerLazySingleton<GetSupplierById>(() => GetSupplierById(sl()));
+  sl.registerLazySingleton<AddSupplier>(() => AddSupplier(sl()));
+  sl.registerLazySingleton<UpdateSupplierById>(() => UpdateSupplierById(sl()));
+  sl.registerLazySingleton<DeleteSupplier>(() => DeleteSupplier(sl()));
+
+  sl.registerFactory(() => SupplierBloc(sl(), sl(), sl(), sl(), sl()));
 }

@@ -5,6 +5,7 @@ import 'package:manuk_pos/features/discount/presentation/bloc/discount_bloc.dart
 import 'package:manuk_pos/features/fee/presentation/bloc/fee_bloc.dart';
 import 'package:manuk_pos/features/loan/presentation/bloc/loan_bloc.dart';
 import 'package:manuk_pos/features/role/presentation/bloc/role_bloc.dart';
+import 'package:manuk_pos/features/supplier/presentation/bloc/supplier_bloc.dart';
 import 'package:manuk_pos/features/tax/presentation/bloc/tax_bloc.dart';
 import 'package:manuk_pos/features/user/presentation/bloc/user_bloc.dart';
 import 'package:manuk_pos/features/branch/presentation/bloc/branch_bloc.dart';
@@ -24,6 +25,7 @@ class ManukPosApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<TaxBloc>()),
         BlocProvider(create: (_) => sl<LoanBloc>()),
         BlocProvider(create: (_) => sl<FeeBloc>()),
+        BlocProvider(create: (_) => sl<SupplierBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

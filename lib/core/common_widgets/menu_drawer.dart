@@ -28,12 +28,16 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Inventory'),
             children: [
               ListTile(
+                leading: const Icon(Icons.shopping_bag),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Product'),
                 onTap: () {
                   context.go('/home');
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.fact_check),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Stock Opname'),
                 onTap: () {
                   context.go('/home/category');
@@ -46,12 +50,16 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Report'),
             children: [
               ListTile(
+                leading: const Icon(Icons.attach_money),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Sales'),
                 onTap: () {
                   context.go('/home/product');
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.storage),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Stock'),
                 onTap: () {
                   context.go('/home/category');
@@ -64,15 +72,19 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Database'),
             children: [
               ListTile(
+                leading: const Icon(Icons.person),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Customer'),
                 onTap: () {
-                  context.go('/home/product');
+                  context.go('/databases/customer/list-customer');
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.local_shipping),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Supplier'),
                 onTap: () {
-                  context.go('/home/category');
+                  context.go('/databases/supplier/list-supplier');
                 },
               ),
             ],
@@ -82,18 +94,24 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Finance'),
             children: [
               ListTile(
+                leading: const Icon(Icons.receipt_long),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Tax'),
                 onTap: () {
                   context.go('/finance/list-tax');
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.money_off_csred),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Loan'),
                 onTap: () {
                   context.go('/finance/list-loan');
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.price_change),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Fee'),
                 onTap: () {
                   context.go('/finance/list-fee');
@@ -106,24 +124,32 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Setting'),
             children: [
               ListTile(
+                leading: const Icon(Icons.people),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('User'),
                 onTap: () {
                   context.go('/setting/list-user');
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.admin_panel_settings),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Role'),
                 onTap: () {
                   context.go('/setting/list-role');
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.store_mall_directory),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Branch'),
                 onTap: () {
                   context.go('/setting/branches');
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.percent),
+                contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Discount'),
                 onTap: () {
                   context.go('/setting/list-discount');
