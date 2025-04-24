@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:manuk_pos/core/config/api_config.dart';
 import 'package:manuk_pos/features/branch/data/models/branch_model.dart';
 import 'package:manuk_pos/features/branch/domain/entities/branch.dart';
 import 'package:http/http.dart' as http;
@@ -13,14 +15,14 @@ abstract class BranchRemoteDataSource {
 }
 
 class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
-  final String baseUrl = 'http://10.0.2.2:8080/api/store/branches';
+  final String baseUrl = ApiConfig.branches();
 
   @override
   Future<List<Branch>> getAllBranches() async {
     final response =
         await http.get(Uri.parse(baseUrl)).timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as List<dynamic>;
       return data.map((e) => BranchModel.fromJson(e)).toList();
@@ -35,7 +37,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
         .get(Uri.parse('$baseUrl/$id'))
         .timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
       return BranchModel.fromJson(data);
@@ -50,9 +52,9 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
       'name': branch.name,
       'address': branch.address,
       'phone': branch.phone,
-      "email": branch.email,
-      "is_main_branch": branch.isMainBranch,
-      "is_active": branch.isActive,
+      'email': branch.email,
+      'is_main_branch': branch.isMainBranch,
+      'is_active': branch.isActive,
     };
 
     final response = await http
@@ -63,7 +65,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
         )
         .timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == HttpStatus.created) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
       return BranchModel.fromJson(data);
@@ -78,9 +80,9 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
       'name': branch.name,
       'address': branch.address,
       'phone': branch.phone,
-      "email": branch.email,
-      "is_main_branch": branch.isMainBranch,
-      "is_active": branch.isActive,
+      'email': branch.email,
+      'is_main_branch': branch.isMainBranch,
+      'is_active': branch.isActive,
     };
 
     final response = await http
@@ -91,7 +93,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
         )
         .timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
       return BranchModel.fromJson(data);
@@ -106,7 +108,7 @@ class BranchRemoteDataSourceImpl implements BranchRemoteDataSource {
         .delete(Uri.parse('$baseUrl/$id'))
         .timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       return decoded['message'];
     } else {
