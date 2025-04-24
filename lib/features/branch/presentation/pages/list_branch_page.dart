@@ -96,7 +96,7 @@ class ListBranchView extends StatelessWidget {
         onPressed: () => context.go('/setting/add-branch'),
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
+      bottomNavigationBar: const BottomNavBar(currentIndex: -1),
     );
   }
 }

@@ -269,7 +269,7 @@ class _AddDiscountPageState extends State<AddDiscountPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
+      bottomNavigationBar: const BottomNavBar(currentIndex: -1),
     );
   }
 }

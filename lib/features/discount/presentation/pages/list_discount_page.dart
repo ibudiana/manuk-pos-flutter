@@ -98,7 +98,7 @@ class ListDiscountView extends StatelessWidget {
         onPressed: () => context.go('/setting/add-discount'),
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 2),
+      bottomNavigationBar: const BottomNavBar(currentIndex: -1),
     );
   }
 }

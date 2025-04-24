@@ -119,7 +119,7 @@ class _AddRolePageState extends State<AddRolePage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 2),
+      bottomNavigationBar: const BottomNavBar(currentIndex: -1),
     );
   }
 }

@@ -188,7 +188,7 @@ class _AddBranchPageState extends State<AddBranchPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
+      bottomNavigationBar: const BottomNavBar(currentIndex: -1),
     );
   }
 }
