@@ -90,7 +90,7 @@ class _AddDiscountPageState extends State<AddDiscountPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message)),
             );
-            context.pushReplacement('/setting/discounts');
+            context.pushReplacement('/setting/list-discount');
             context.read<DiscountBloc>().add(GetAllDiscountEvent());
           } else if (state is DiscountOperationFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
