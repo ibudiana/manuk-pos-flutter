@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:manuk_pos/core/error/failures.dart';
-import 'package:manuk_pos/features/user/data/datasources/remote_datasource.dart';
+import 'package:manuk_pos/features/user/data/datasources/user_remote_datasource.dart';
 import 'package:manuk_pos/features/user/domain/entities/user.dart';
 
 abstract class UserRepository {

@@ -39,7 +39,7 @@ import 'package:manuk_pos/features/user/presentation/pages/list_user_page.dart';
 import 'package:manuk_pos/features/user/presentation/pages/user_page.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/inventory/product/list-product',
+  initialLocation: '/',
   routes: [
     GoRoute(
       path: '/',

@@ -75,7 +75,7 @@ import 'package:manuk_pos/features/tax/domain/usecases/get_all_tax.dart';
 import 'package:manuk_pos/features/tax/domain/usecases/get_tax.dart';
 import 'package:manuk_pos/features/tax/domain/usecases/update_tax.dart';
 import 'package:manuk_pos/features/tax/presentation/bloc/tax_bloc.dart';
-import 'package:manuk_pos/features/user/data/datasources/remote_datasource.dart';
+import 'package:manuk_pos/features/user/data/datasources/user_remote_datasource.dart';
 import 'package:manuk_pos/features/user/domain/repositories/user_repository.dart';
 import 'package:manuk_pos/features/user/domain/usecases/add_user.dart';
 import 'package:manuk_pos/features/user/domain/usecases/delete_user.dart';
