@@ -16,6 +16,9 @@ import 'package:manuk_pos/features/home/home_feature.dart';
 import 'package:manuk_pos/features/loan/domain/entities/loan.dart';
 import 'package:manuk_pos/features/loan/presentation/pages/list_loan_page.dart';
 import 'package:manuk_pos/features/loan/presentation/pages/loan_page.dart';
+import 'package:manuk_pos/features/product/domain/entities/product.dart';
+import 'package:manuk_pos/features/product/presentation/pages/list_product_page.dart';
+import 'package:manuk_pos/features/product/presentation/pages/product_page.dart';
 import 'package:manuk_pos/features/role/domain/entities/role.dart';
 import 'package:manuk_pos/features/role/presentation/pages/list_role_page.dart';
 import 'package:manuk_pos/features/role/presentation/pages/role_page.dart';
@@ -33,7 +36,7 @@ import 'package:manuk_pos/features/user/presentation/pages/list_user_page.dart';
 import 'package:manuk_pos/features/user/presentation/pages/user_page.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/databases/customer/list-customer',
+  initialLocation: '/inventory/product/list-product',
   routes: [
     GoRoute(
       path: '/',
@@ -88,6 +91,29 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: 'profile',
           builder: (context, state) => const ProfilePage(),
+        ),
+      ],
+    ),
+    // Product Routes
+    GoRoute(
+      path: '/inventory',
+      builder: (context, state) => const SizedBox.shrink(),
+      routes: [
+        // Product Routes
+        GoRoute(
+          path: 'product/list-product',
+          builder: (context, state) => const ListProductPage(),
+        ),
+        GoRoute(
+          path: 'product/add-product',
+          builder: (context, state) => const AddProductPage(),
+        ),
+        GoRoute(
+          path: 'product/edit-product',
+          builder: (context, state) {
+            final product = state.extra as Product;
+            return AddProductPage(product: product);
+          },
         ),
       ],
     ),

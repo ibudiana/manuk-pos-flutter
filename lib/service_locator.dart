@@ -35,6 +35,14 @@ import 'package:manuk_pos/features/loan/domain/usecases/get_all_loan.dart';
 import 'package:manuk_pos/features/loan/domain/usecases/get_loan.dart';
 import 'package:manuk_pos/features/loan/domain/usecases/update_loan.dart';
 import 'package:manuk_pos/features/loan/presentation/bloc/loan_bloc.dart';
+import 'package:manuk_pos/features/product/data/datasources/product_remote_datasource.dart';
+import 'package:manuk_pos/features/product/domain/repositories/product_repository.dart';
+import 'package:manuk_pos/features/product/domain/usecases/add_product.dart';
+import 'package:manuk_pos/features/product/domain/usecases/delete_product.dart';
+import 'package:manuk_pos/features/product/domain/usecases/get_all_product.dart';
+import 'package:manuk_pos/features/product/domain/usecases/get_product.dart';
+import 'package:manuk_pos/features/product/domain/usecases/update_product.dart';
+import 'package:manuk_pos/features/product/presentation/bloc/product_bloc.dart';
 import 'package:manuk_pos/features/role/data/datasources/role_remote_datasource.dart';
 import 'package:manuk_pos/features/role/domain/repositories/role_repository.dart';
 import 'package:manuk_pos/features/role/domain/usecases/add_role.dart';
@@ -200,4 +208,19 @@ Future<void> init() async {
   sl.registerLazySingleton<DeleteCustomer>(() => DeleteCustomer(sl()));
 
   sl.registerFactory(() => CustomerBloc(sl(), sl(), sl(), sl(), sl()));
+
+  // Product
+  sl.registerLazySingleton<ProductRemoteDataSource>(
+      () => ProductRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<ProductRepository>(
+      () => ProductRepositoryImpl(remoteDataSource: sl()));
+
+  sl.registerLazySingleton<GetAllProduct>(() => GetAllProduct(sl()));
+  sl.registerLazySingleton<GetProductById>(() => GetProductById(sl()));
+  sl.registerLazySingleton<AddProduct>(() => AddProduct(sl()));
+  sl.registerLazySingleton<UpdateProductById>(() => UpdateProductById(sl()));
+  sl.registerLazySingleton<DeleteProduct>(() => DeleteProduct(sl()));
+
+  sl.registerFactory(() => ProductBloc(sl(), sl(), sl(), sl(), sl()));
 }

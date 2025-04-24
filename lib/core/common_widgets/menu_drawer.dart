@@ -32,7 +32,7 @@ class AppDrawer extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Product'),
                 onTap: () {
-                  context.go('/home');
+                  context.go('/inventory/product/list-product');
                 },
               ),
               ListTile(
@@ -40,7 +40,7 @@ class AppDrawer extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Stock Opname'),
                 onTap: () {
-                  context.go('/home/category');
+                  context.go('/inventory/stockopname/list-stock-opname');
                 },
               ),
             ],
