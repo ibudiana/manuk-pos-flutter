@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:manuk_pos/core/config/api_config.dart';
 import 'package:manuk_pos/features/role/data/models/role_model.dart';
 import 'package:manuk_pos/features/role/domain/entities/role.dart';
 import 'package:http/http.dart' as http;
@@ -12,14 +14,15 @@ abstract class RoleRemoteDataSource {
 }
 
 class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
-  final String baseUrl = 'http://10.0.2.2:8080/api/roles';
+  // final String baseUrl = 'http://10.0.2.2:8080/api/roles';
+  final String baseUrl = ApiConfig.roles();
 
   @override
   Future<List<Role>> getAllRoles() async {
     final response =
         await http.get(Uri.parse(baseUrl)).timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as List<dynamic>;
       return data.map((e) => RoleModel.fromJson(e)).toList();
@@ -34,7 +37,7 @@ class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
         .get(Uri.parse('$baseUrl/$id'))
         .timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
       return RoleModel.fromJson(data);
@@ -58,7 +61,7 @@ class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
         )
         .timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == HttpStatus.created) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
       return RoleModel.fromJson(data);
@@ -82,7 +85,7 @@ class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
         )
         .timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
       return RoleModel.fromJson(data);
@@ -97,7 +100,7 @@ class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
         .delete(Uri.parse('$baseUrl/$id'))
         .timeout(Duration(seconds: 30));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       return decoded['message'];
     } else {

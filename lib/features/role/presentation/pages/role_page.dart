@@ -55,7 +55,7 @@ class _AddRolePageState extends State<AddRolePage> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message)),
             );
-            context.pushReplacement('/setting/roles');
+            context.pushReplacement('/setting/list-role');
             context.read<RoleBloc>().add(GetAllRoleEvent());
           } else if (state is RoleOperationFailure) {
             ScaffoldMessenger.of(context).showSnackBar(

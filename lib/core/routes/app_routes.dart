@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:manuk_pos/features/branch/domain/entities/branch.dart';
 import 'package:manuk_pos/features/branch/presentation/pages/branch_page.dart';
@@ -75,9 +76,68 @@ final GoRouter appRouter = GoRouter(
         ),
       ],
     ),
+    // Finance Routes
+    // GoRoute(
+    //   path: '/finance',
+    //   builder: (context, state) => const SizedBox.shrink(),
+    //   routes: [
+    //     // Tax Routes
+    //     GoRoute(
+    //       path: 'list-tax',
+    //       builder: (context, state) => const ListTaxPage(),
+    //     ),
+    //     GoRoute(
+    //       path: 'add-tax',
+    //       builder: (context, state) => const AddTaxPage(),
+    //     ),
+    //     GoRoute(
+    //       path: 'edit-tax',
+    //       builder: (context, state) {
+    //         final tax = state.extra as Tax;
+    //         return AddTaxPage(tax: tax);
+    //       },
+    //     ),
+
+    //     // // Fee Routes
+    //     // GoRoute(
+    //     //   path: 'list-fee',
+    //     //   builder: (context, state) => const ListFeePage(),
+    //     // ),
+    //     // GoRoute(
+    //     //   path: 'add-fee',
+    //     //   builder: (context, state) => const AddFeePage(),
+    //     // ),
+    //     // GoRoute(
+    //     //   path: 'edit-fee',
+    //     //   builder: (context, state) {
+    //     //     final fee = state.extra as Fee;
+    //     //     return AddFeePage(fee: fee);
+    //     //   },
+    //     // ),
+
+    //     // // Loan Routes
+    //     // GoRoute(
+    //     //   path: 'list-loan',
+    //     //   builder: (context, state) => const ListLoanPage(),
+    //     // ),
+    //     // GoRoute(
+    //     //   path: 'add-loan',
+    //     //   builder: (context, state) => const AddLoanPage(),
+    //     // ),
+    //     // GoRoute(
+    //     //   path: 'edit-loan',
+    //     //   builder: (context, state) {
+    //     //     final loan = state.extra as Loan;
+    //     //     return AddLoanPage(loan: loan);
+    //     //   },
+    //     // ),
+    //   ],
+    // ),
+
+    // Setting Routes
     GoRoute(
       path: '/setting',
-      builder: (context, state) => const OnboardPage(),
+      builder: (context, state) => const SizedBox.shrink(),
       routes: [
         // User Routes
         GoRoute(
