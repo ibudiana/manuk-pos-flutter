@@ -27,6 +27,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.inventory),
             title: const Text('Inventory'),
             children: [
+              // Product Route
               ListTile(
                 leading: const Icon(Icons.shopping_bag),
                 contentPadding: const EdgeInsets.only(left: 32.0),
@@ -35,6 +36,43 @@ class AppDrawer extends StatelessWidget {
                   context.go('/inventory/product/list-product');
                 },
               ),
+
+              // Product Category as a child route under Product
+              ExpansionTile(
+                title: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 18.0), // Adjust the left padding here
+                  child: Row(
+                    children: [
+                      const Icon(Icons.category,
+                          size: 20), // Add your icon here
+                      const SizedBox(
+                          width: 8), // Space between the icon and the text
+                      const Text('Product Category'),
+                    ],
+                  ),
+                ),
+                childrenPadding: const EdgeInsets.only(
+                    left: 64.0), // Indent the children here
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.list),
+                    title: const Text('List Categories'),
+                    onTap: () {
+                      context.go('/inventory/product/category/list-category');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.add),
+                    title: const Text('Add Category'),
+                    onTap: () {
+                      context.go('/inventory/product/category/add-category');
+                    },
+                  ),
+                ],
+              ),
+
+              // Stock Opname Route
               ListTile(
                 leading: const Icon(Icons.fact_check),
                 contentPadding: const EdgeInsets.only(left: 32.0),
