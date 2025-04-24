@@ -3,6 +3,14 @@ import 'package:manuk_pos/features/branch/domain/usecases/add_branch.dart';
 import 'package:manuk_pos/features/branch/domain/usecases/delete_branch.dart';
 import 'package:manuk_pos/features/branch/domain/usecases/get_branch.dart';
 import 'package:manuk_pos/features/branch/domain/usecases/update_branch.dart';
+import 'package:manuk_pos/features/customer/data/datasources/customer_remote_datasource.dart';
+import 'package:manuk_pos/features/customer/domain/repositories/customer_repository.dart';
+import 'package:manuk_pos/features/customer/domain/usecases/add_customer.dart';
+import 'package:manuk_pos/features/customer/domain/usecases/delete_customer.dart';
+import 'package:manuk_pos/features/customer/domain/usecases/get_all_customer.dart';
+import 'package:manuk_pos/features/customer/domain/usecases/get_customer.dart';
+import 'package:manuk_pos/features/customer/domain/usecases/update_customer.dart';
+import 'package:manuk_pos/features/customer/presentation/bloc/customer_bloc.dart';
 import 'package:manuk_pos/features/discount/data/datasources/discount_remote_datasource.dart';
 import 'package:manuk_pos/features/discount/domain/repositories/discount_repository.dart';
 import 'package:manuk_pos/features/discount/domain/usecases/add_discount.dart';
@@ -177,4 +185,19 @@ Future<void> init() async {
   sl.registerLazySingleton<DeleteSupplier>(() => DeleteSupplier(sl()));
 
   sl.registerFactory(() => SupplierBloc(sl(), sl(), sl(), sl(), sl()));
+
+  // Customer
+  sl.registerLazySingleton<CustomerRemoteDataSource>(
+      () => CustomerRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<CustomerRepository>(
+      () => CustomerRepositoryImpl(remoteDataSource: sl()));
+
+  sl.registerLazySingleton<GetAllCustomer>(() => GetAllCustomer(sl()));
+  sl.registerLazySingleton<GetCustomerById>(() => GetCustomerById(sl()));
+  sl.registerLazySingleton<AddCustomer>(() => AddCustomer(sl()));
+  sl.registerLazySingleton<UpdateCustomerById>(() => UpdateCustomerById(sl()));
+  sl.registerLazySingleton<DeleteCustomer>(() => DeleteCustomer(sl()));
+
+  sl.registerFactory(() => CustomerBloc(sl(), sl(), sl(), sl(), sl()));
 }

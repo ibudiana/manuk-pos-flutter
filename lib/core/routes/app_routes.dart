@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:manuk_pos/features/branch/domain/entities/branch.dart';
 import 'package:manuk_pos/features/branch/presentation/pages/branch_page.dart';
 import 'package:manuk_pos/features/branch/presentation/pages/list_branch_page.dart';
+import 'package:manuk_pos/features/customer/domain/entities/customer.dart';
+import 'package:manuk_pos/features/customer/presentation/pages/customer_page.dart';
+import 'package:manuk_pos/features/customer/presentation/pages/list_customer_page.dart';
 import 'package:manuk_pos/features/discount/domain/entities/discount.dart';
 import 'package:manuk_pos/features/discount/presentation/pages/discount_page.dart';
 import 'package:manuk_pos/features/discount/presentation/pages/list_discount_page.dart';
@@ -30,7 +33,7 @@ import 'package:manuk_pos/features/user/presentation/pages/list_user_page.dart';
 import 'package:manuk_pos/features/user/presentation/pages/user_page.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/databases/supplier/list-supplier',
+  initialLocation: '/databases/customer/list-customer',
   routes: [
     GoRoute(
       path: '/',
@@ -93,6 +96,22 @@ final GoRouter appRouter = GoRouter(
       path: '/databases',
       builder: (context, state) => const SizedBox.shrink(),
       routes: [
+        // Customer Routes
+        GoRoute(
+          path: '/customer/list-customer',
+          builder: (context, state) => const ListCustomerPage(),
+        ),
+        GoRoute(
+          path: '/customer/add-customer',
+          builder: (context, state) => const AddCustomerPage(),
+        ),
+        GoRoute(
+          path: '/customer/edit-customer',
+          builder: (context, state) {
+            final customer = state.extra as Customer;
+            return AddCustomerPage(customer: customer);
+          },
+        ),
         // Supplier Routes
         GoRoute(
           path: '/supplier/list-supplier',
