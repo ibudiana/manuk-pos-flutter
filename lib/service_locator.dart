@@ -11,6 +11,14 @@ import 'package:manuk_pos/features/discount/domain/usecases/get_all_discount.dar
 import 'package:manuk_pos/features/discount/domain/usecases/get_discount.dart';
 import 'package:manuk_pos/features/discount/domain/usecases/update_discount.dart';
 import 'package:manuk_pos/features/discount/presentation/bloc/discount_bloc.dart';
+import 'package:manuk_pos/features/fee/data/datasources/fee_remote_datasource.dart';
+import 'package:manuk_pos/features/fee/domain/repositories/fee_repository.dart';
+import 'package:manuk_pos/features/fee/domain/usecases/add_fee.dart';
+import 'package:manuk_pos/features/fee/domain/usecases/delete_fee.dart';
+import 'package:manuk_pos/features/fee/domain/usecases/get_all_fee.dart';
+import 'package:manuk_pos/features/fee/domain/usecases/get_fee.dart';
+import 'package:manuk_pos/features/fee/domain/usecases/update_fee.dart';
+import 'package:manuk_pos/features/fee/presentation/bloc/fee_bloc.dart';
 import 'package:manuk_pos/features/loan/data/datasources/loan_remote_datasource.dart';
 import 'package:manuk_pos/features/loan/domain/repositories/loan_repository.dart';
 import 'package:manuk_pos/features/loan/domain/usecases/add_loan.dart';
@@ -131,4 +139,19 @@ Future<void> init() async {
   sl.registerLazySingleton<DeleteLoan>(() => DeleteLoan(sl()));
 
   sl.registerFactory(() => LoanBloc(sl(), sl(), sl(), sl(), sl()));
+
+  // Fee
+  sl.registerLazySingleton<FeeRemoteDataSource>(
+      () => FeeRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<FeeRepository>(
+      () => FeeRepositoryImpl(remoteDataSource: sl()));
+
+  sl.registerLazySingleton<GetAllFee>(() => GetAllFee(sl()));
+  sl.registerLazySingleton<GetFeeById>(() => GetFeeById(sl()));
+  sl.registerLazySingleton<AddFee>(() => AddFee(sl()));
+  sl.registerLazySingleton<UpdateFeeById>(() => UpdateFeeById(sl()));
+  sl.registerLazySingleton<DeleteFee>(() => DeleteFee(sl()));
+
+  sl.registerFactory(() => FeeBloc(sl(), sl(), sl(), sl(), sl()));
 }

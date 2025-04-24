@@ -6,6 +6,9 @@ import 'package:manuk_pos/features/branch/presentation/pages/list_branch_page.da
 import 'package:manuk_pos/features/discount/domain/entities/discount.dart';
 import 'package:manuk_pos/features/discount/presentation/pages/discount_page.dart';
 import 'package:manuk_pos/features/discount/presentation/pages/list_discount_page.dart';
+import 'package:manuk_pos/features/fee/domain/entities/fee.dart';
+import 'package:manuk_pos/features/fee/presentation/pages/fee_page.dart';
+import 'package:manuk_pos/features/fee/presentation/pages/list_fee_page.dart';
 import 'package:manuk_pos/features/home/home_feature.dart';
 import 'package:manuk_pos/features/loan/domain/entities/loan.dart';
 import 'package:manuk_pos/features/loan/presentation/pages/list_loan_page.dart';
@@ -104,22 +107,22 @@ final GoRouter appRouter = GoRouter(
           },
         ),
 
-        //     // // Fee Routes
-        //     // GoRoute(
-        //     //   path: 'list-fee',
-        //     //   builder: (context, state) => const ListFeePage(),
-        //     // ),
-        //     // GoRoute(
-        //     //   path: 'add-fee',
-        //     //   builder: (context, state) => const AddFeePage(),
-        //     // ),
-        //     // GoRoute(
-        //     //   path: 'edit-fee',
-        //     //   builder: (context, state) {
-        //     //     final fee = state.extra as Fee;
-        //     //     return AddFeePage(fee: fee);
-        //     //   },
-        //     // ),
+        // Fee Routes
+        GoRoute(
+          path: 'list-fee',
+          builder: (context, state) => const ListFeePage(),
+        ),
+        GoRoute(
+          path: 'add-fee',
+          builder: (context, state) => const AddFeePage(),
+        ),
+        GoRoute(
+          path: 'edit-fee',
+          builder: (context, state) {
+            final fee = state.extra as Fee;
+            return AddFeePage(fee: fee);
+          },
+        ),
 
         // Loan Routes
         GoRoute(

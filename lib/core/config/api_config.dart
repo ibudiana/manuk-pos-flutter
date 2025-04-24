@@ -20,6 +20,8 @@ class ApiConfig {
 
   // Orders
   static String orders() => '$baseUrl/orders';
+  //Fees
+  static String fees() => '$baseUrl/orders/fees';
 
   // Customers
   static String customers() => '$baseUrl/customers';
