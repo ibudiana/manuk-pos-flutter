@@ -1,37 +1,37 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:manuk_pos/core/config/api_config.dart';
-import 'package:manuk_pos/features/role/data/models/role_model.dart';
-import 'package:manuk_pos/features/role/domain/entities/role.dart';
+import 'package:manuk_pos/features/tax/data/models/tax_model.dart';
+import 'package:manuk_pos/features/tax/domain/entities/tax.dart';
 import 'package:http/http.dart' as http;
 
-abstract class RoleRemoteDataSource {
-  Future<List<Role>> getAllRoles();
-  Future<Role> getRoleById(int id);
-  Future<Role> addRole(Role role);
-  Future<Role> updateRoleById(int id, Role role);
-  Future<String> deleteRole(int id);
+abstract class TaxRemoteDataSource {
+  Future<List<Tax>> getAllTaxes();
+  Future<Tax> getTaxById(int id);
+  Future<Tax> addTax(Tax tax);
+  Future<Tax> updateTaxById(int id, Tax tax);
+  Future<String> deleteTax(int id);
 }
 
-class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
-  final String baseUrl = ApiConfig.roles();
+class TaxRemoteDataSourceImpl implements TaxRemoteDataSource {
+  final String baseUrl = ApiConfig.taxes();
 
   @override
-  Future<List<Role>> getAllRoles() async {
+  Future<List<Tax>> getAllTaxes() async {
     final response =
         await http.get(Uri.parse(baseUrl)).timeout(Duration(seconds: 30));
 
     if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as List<dynamic>;
-      return data.map((e) => RoleModel.fromJson(e)).toList();
+      return data.map((e) => TaxModel.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load roles');
+      throw Exception('Failed to load taxes');
     }
   }
 
   @override
-  Future<Role> getRoleById(int id) async {
+  Future<Tax> getTaxById(int id) async {
     final response = await http
         .get(Uri.parse('$baseUrl/$id'))
         .timeout(Duration(seconds: 30));
@@ -39,41 +39,45 @@ class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
     if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
-      return RoleModel.fromJson(data);
+      return TaxModel.fromJson(data);
     } else {
-      throw Exception('Failed to load role');
+      throw Exception('Failed to load tax');
     }
   }
 
   @override
-  Future<Role> addRole(Role role) async {
-    final newRoleData = {
-      'role_name': role.roleName,
-      'description': role.description,
+  Future<Tax> addTax(Tax tax) async {
+    final newTaxData = {
+      'name': tax.name,
+      'rate': tax.rate,
+      'is_default': tax.isDefault ? 1 : 0,
+      'is_active': tax.isActive,
     };
 
     final response = await http
         .post(
           Uri.parse(baseUrl),
           headers: {'Content-Type': 'application/json'},
-          body: json.encode(newRoleData),
+          body: json.encode(newTaxData),
         )
         .timeout(Duration(seconds: 30));
 
     if (response.statusCode == HttpStatus.created) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
-      return RoleModel.fromJson(data);
+      return TaxModel.fromJson(data);
     } else {
-      throw Exception('Failed to create new role');
+      throw Exception('Failed to create new tax');
     }
   }
 
   @override
-  Future<Role> updateRoleById(int id, Role role) async {
+  Future<Tax> updateTaxById(int id, Tax tax) async {
     final updatedData = {
-      'role_name': role.roleName,
-      'description': role.description,
+      'name': tax.name,
+      'rate': tax.rate,
+      'is_default': tax.isDefault ? 1 : 0,
+      'is_active': tax.isActive,
     };
 
     final response = await http
@@ -87,14 +91,14 @@ class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
     if (response.statusCode == HttpStatus.ok) {
       final decoded = json.decode(response.body);
       final data = decoded['data'] as Map<String, dynamic>;
-      return RoleModel.fromJson(data);
+      return TaxModel.fromJson(data);
     } else {
-      throw Exception('Failed to update role');
+      throw Exception('Failed to update tax');
     }
   }
 
   @override
-  Future<String> deleteRole(int id) async {
+  Future<String> deleteTax(int id) async {
     final response = await http
         .delete(Uri.parse('$baseUrl/$id'))
         .timeout(Duration(seconds: 30));
@@ -103,7 +107,7 @@ class RoleRemoteDataSourceImpl implements RoleRemoteDataSource {
       final decoded = json.decode(response.body);
       return decoded['message'];
     } else {
-      throw Exception('Failed to delete role');
+      throw Exception('Failed to delete tax');
     }
   }
 }

@@ -16,10 +16,14 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // jika currentIndex -1, pakai warna selected dan unselected yang sama biar "invisible"
+    final isInactive = currentIndex == -1;
+
     return BottomNavigationBar(
-      selectedItemColor: AppTheme.secondaryColor,
+      selectedItemColor:
+          isInactive ? AppTheme.buttonBackground : AppTheme.secondaryColor,
       unselectedItemColor: AppTheme.buttonBackground,
-      currentIndex: currentIndex,
+      currentIndex: currentIndex >= 0 ? currentIndex : 0,
       onTap: (index) {
         if (index != currentIndex) {
           context.go(_routes[index]);
@@ -32,6 +36,7 @@ class BottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Laporan'),
         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
       ],
+      type: BottomNavigationBarType.fixed,
     );
   }
 }

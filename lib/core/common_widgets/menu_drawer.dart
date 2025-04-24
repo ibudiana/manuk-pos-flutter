@@ -84,19 +84,19 @@ class AppDrawer extends StatelessWidget {
               ListTile(
                 title: const Text('Tax'),
                 onTap: () {
-                  context.go('/finance/tax');
+                  context.go('/finance/list-tax');
                 },
               ),
               ListTile(
                 title: const Text('Loan'),
                 onTap: () {
-                  context.go('/finance/loan');
+                  context.go('/finance/list-loan');
                 },
               ),
               ListTile(
                 title: const Text('Fee'),
                 onTap: () {
-                  context.go('/finance/fee');
+                  context.go('/finance/list-fee');
                 },
               ),
             ],

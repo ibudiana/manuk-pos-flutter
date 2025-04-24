@@ -7,18 +7,24 @@ import 'package:manuk_pos/features/discount/domain/entities/discount.dart';
 import 'package:manuk_pos/features/discount/presentation/pages/discount_page.dart';
 import 'package:manuk_pos/features/discount/presentation/pages/list_discount_page.dart';
 import 'package:manuk_pos/features/home/home_feature.dart';
+import 'package:manuk_pos/features/loan/domain/entities/loan.dart';
+import 'package:manuk_pos/features/loan/presentation/pages/list_loan_page.dart';
+import 'package:manuk_pos/features/loan/presentation/pages/loan_page.dart';
 import 'package:manuk_pos/features/role/domain/entities/role.dart';
 import 'package:manuk_pos/features/role/presentation/pages/list_role_page.dart';
 import 'package:manuk_pos/features/role/presentation/pages/role_page.dart';
 import 'package:manuk_pos/features/splash/splash_feature.dart';
 import 'package:manuk_pos/features/onboard/onboard_feature.dart';
 import 'package:manuk_pos/features/auth/auth_feature.dart';
+import 'package:manuk_pos/features/tax/domain/entities/tax.dart';
+import 'package:manuk_pos/features/tax/presentation/pages/list_tax_page.dart';
+import 'package:manuk_pos/features/tax/presentation/pages/tax_page.dart';
 import 'package:manuk_pos/features/user/domain/entities/user.dart';
 import 'package:manuk_pos/features/user/presentation/pages/list_user_page.dart';
 import 'package:manuk_pos/features/user/presentation/pages/user_page.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/setting/list-discount',
+  initialLocation: '/finance/list-loan',
   routes: [
     GoRoute(
       path: '/',
@@ -77,62 +83,62 @@ final GoRouter appRouter = GoRouter(
       ],
     ),
     // Finance Routes
-    // GoRoute(
-    //   path: '/finance',
-    //   builder: (context, state) => const SizedBox.shrink(),
-    //   routes: [
-    //     // Tax Routes
-    //     GoRoute(
-    //       path: 'list-tax',
-    //       builder: (context, state) => const ListTaxPage(),
-    //     ),
-    //     GoRoute(
-    //       path: 'add-tax',
-    //       builder: (context, state) => const AddTaxPage(),
-    //     ),
-    //     GoRoute(
-    //       path: 'edit-tax',
-    //       builder: (context, state) {
-    //         final tax = state.extra as Tax;
-    //         return AddTaxPage(tax: tax);
-    //       },
-    //     ),
+    GoRoute(
+      path: '/finance',
+      builder: (context, state) => const SizedBox.shrink(),
+      routes: [
+        // Tax Routes
+        GoRoute(
+          path: 'list-tax',
+          builder: (context, state) => const ListTaxPage(),
+        ),
+        GoRoute(
+          path: 'add-tax',
+          builder: (context, state) => const AddTaxPage(),
+        ),
+        GoRoute(
+          path: 'edit-tax',
+          builder: (context, state) {
+            final tax = state.extra as Tax;
+            return AddTaxPage(tax: tax);
+          },
+        ),
 
-    //     // // Fee Routes
-    //     // GoRoute(
-    //     //   path: 'list-fee',
-    //     //   builder: (context, state) => const ListFeePage(),
-    //     // ),
-    //     // GoRoute(
-    //     //   path: 'add-fee',
-    //     //   builder: (context, state) => const AddFeePage(),
-    //     // ),
-    //     // GoRoute(
-    //     //   path: 'edit-fee',
-    //     //   builder: (context, state) {
-    //     //     final fee = state.extra as Fee;
-    //     //     return AddFeePage(fee: fee);
-    //     //   },
-    //     // ),
+        //     // // Fee Routes
+        //     // GoRoute(
+        //     //   path: 'list-fee',
+        //     //   builder: (context, state) => const ListFeePage(),
+        //     // ),
+        //     // GoRoute(
+        //     //   path: 'add-fee',
+        //     //   builder: (context, state) => const AddFeePage(),
+        //     // ),
+        //     // GoRoute(
+        //     //   path: 'edit-fee',
+        //     //   builder: (context, state) {
+        //     //     final fee = state.extra as Fee;
+        //     //     return AddFeePage(fee: fee);
+        //     //   },
+        //     // ),
 
-    //     // // Loan Routes
-    //     // GoRoute(
-    //     //   path: 'list-loan',
-    //     //   builder: (context, state) => const ListLoanPage(),
-    //     // ),
-    //     // GoRoute(
-    //     //   path: 'add-loan',
-    //     //   builder: (context, state) => const AddLoanPage(),
-    //     // ),
-    //     // GoRoute(
-    //     //   path: 'edit-loan',
-    //     //   builder: (context, state) {
-    //     //     final loan = state.extra as Loan;
-    //     //     return AddLoanPage(loan: loan);
-    //     //   },
-    //     // ),
-    //   ],
-    // ),
+        // Loan Routes
+        GoRoute(
+          path: 'list-loan',
+          builder: (context, state) => const ListLoanPage(),
+        ),
+        GoRoute(
+          path: 'add-loan',
+          builder: (context, state) => const AddLoanPage(),
+        ),
+        GoRoute(
+          path: 'edit-loan',
+          builder: (context, state) {
+            final loan = state.extra as Loan;
+            return AddLoanPage(loan: loan);
+          },
+        ),
+      ],
+    ),
 
     // Setting Routes
     GoRoute(

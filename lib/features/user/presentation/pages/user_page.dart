@@ -294,7 +294,7 @@ class _AddUserPageState extends State<AddUserPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
+      bottomNavigationBar: const BottomNavBar(currentIndex: -1),
     );
   }
 }

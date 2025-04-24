@@ -6,61 +6,76 @@ import 'package:manuk_pos/core/common_widgets/list_tile_menu.dart';
 import 'package:manuk_pos/core/common_widgets/menu_drawer.dart';
 import 'package:manuk_pos/core/common_widgets/top_nav.dart';
 import 'package:manuk_pos/core/theme/theme.dart';
-import 'package:manuk_pos/features/role/presentation/bloc/role_bloc.dart';
+import 'package:manuk_pos/features/tax/presentation/bloc/tax_bloc.dart';
 import 'package:manuk_pos/service_locator.dart';
 
-class ListRolePage extends StatelessWidget {
-  const ListRolePage({super.key});
+class ListTaxPage extends StatelessWidget {
+  const ListTaxPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<RoleBloc>(
-      create: (_) => sl<RoleBloc>()..add(GetAllRoleEvent()),
-      child: BlocListener<RoleBloc, RoleState>(
+    return BlocProvider<TaxBloc>(
+      create: (_) => sl<TaxBloc>()..add(GetAllTaxEvent()),
+      child: BlocListener<TaxBloc, TaxState>(
         listener: (context, state) {
-          if (state is RoleOperationSuccess) {
-            context.read<RoleBloc>().add(GetAllRoleEvent());
+          if (state is TaxOperationSuccess) {
+            context.read<TaxBloc>().add(GetAllTaxEvent());
+          }
+          if (state is TaxStateError) {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text("Error"),
+                content: Text("List Tax failed to load"),
+                actions: [
+                  TextButton(
+                    onPressed: () => context.go('/'),
+                    child: Text("OK"),
+                  ),
+                ],
+              ),
+            );
           }
         },
-        child: const ListRoleView(),
+        child: const ListTaxView(),
       ),
     );
   }
 }
 
-class ListRoleView extends StatelessWidget {
-  const ListRoleView({super.key});
+class ListTaxView extends StatelessWidget {
+  const ListTaxView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.thirdColor,
-      appBar: CustomAppBar(title: "Roles"),
+      appBar: CustomAppBar(title: "Taxes"),
       drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: BlocBuilder<RoleBloc, RoleState>(
+        child: BlocBuilder<TaxBloc, TaxState>(
           builder: (context, state) {
-            if (state is RoleStateLoading) {
+            if (state is TaxStateLoading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state is RoleStateLoaded) {
+            } else if (state is TaxStateLoaded) {
               return ListView.separated(
-                itemCount: state.roles.length,
+                itemCount: state.taxes.length,
                 separatorBuilder: (_, __) => const SizedBox(height: 8),
                 itemBuilder: (context, index) {
-                  final role = state.roles[index];
+                  final tax = state.taxes[index];
                   return CommonListTileWithMenu(
-                    title: role.roleName,
+                    title: tax.name,
                     onSelected: (value) async {
                       if (value == 'Edit') {
-                        context.push('/setting/edit-role', extra: role);
+                        context.push('/finance/edit-tax', extra: tax);
                       } else if (value == 'Delete') {
                         final confirm = await showDialog<bool>(
                           context: context,
                           builder: (context) => AlertDialog(
                             title: const Text('Confirm Delete'),
                             content: Text(
-                                'Are you sure you want to delete the role ${role.roleName}?'),
+                                'Are you sure you want to delete the tax ${tax.name}?'),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(context, false),
@@ -75,26 +90,22 @@ class ListRoleView extends StatelessWidget {
                         );
 
                         if (confirm == true) {
-                          context
-                              .read<RoleBloc>()
-                              .add(DeleteRoleEvent(role.id));
+                          context.read<TaxBloc>().add(DeleteTaxEvent(tax.id));
                         }
                       }
                     },
                   );
                 },
               );
-            } else if (state is RoleStateError) {
-              return Center(child: Text(state.message));
             }
 
-            return const Center(child: Text("No role data"));
+            return const Center(child: Text("No tax data"));
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppTheme.secondaryColor,
-        onPressed: () => context.go('/setting/add-role'),
+        onPressed: () => context.go('/finance/add-tax'),
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: const BottomNavBar(currentIndex: -1),
