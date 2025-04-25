@@ -10,6 +10,7 @@ import 'package:manuk_pos/features/product/presentation/bloc/product_bloc.dart';
 import 'package:manuk_pos/features/role/presentation/bloc/role_bloc.dart';
 import 'package:manuk_pos/features/supplier/presentation/bloc/supplier_bloc.dart';
 import 'package:manuk_pos/features/tax/presentation/bloc/tax_bloc.dart';
+import 'package:manuk_pos/features/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:manuk_pos/features/user/presentation/bloc/user_bloc.dart';
 import 'package:manuk_pos/features/branch/presentation/bloc/branch_bloc.dart';
 import 'package:manuk_pos/service_locator.dart';
@@ -32,6 +33,7 @@ class ManukPosApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<CustomerBloc>()),
         BlocProvider(create: (_) => sl<ProductBloc>()),
         BlocProvider(create: (_) => sl<CategoryBloc>()),
+        BlocProvider(create: (_) => sl<TransactionBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

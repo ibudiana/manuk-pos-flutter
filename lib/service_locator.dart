@@ -75,6 +75,14 @@ import 'package:manuk_pos/features/tax/domain/usecases/get_all_tax.dart';
 import 'package:manuk_pos/features/tax/domain/usecases/get_tax.dart';
 import 'package:manuk_pos/features/tax/domain/usecases/update_tax.dart';
 import 'package:manuk_pos/features/tax/presentation/bloc/tax_bloc.dart';
+import 'package:manuk_pos/features/transaction/data/datasources/transaction_remote_datasource.dart';
+import 'package:manuk_pos/features/transaction/domain/repositories/transaction_repository.dart';
+import 'package:manuk_pos/features/transaction/domain/usecases/add_transaction.dart';
+import 'package:manuk_pos/features/transaction/domain/usecases/delete_transaction.dart';
+import 'package:manuk_pos/features/transaction/domain/usecases/get_all_transaction.dart';
+import 'package:manuk_pos/features/transaction/domain/usecases/get_transaction.dart';
+import 'package:manuk_pos/features/transaction/domain/usecases/update_transaction.dart';
+import 'package:manuk_pos/features/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:manuk_pos/features/user/data/datasources/user_remote_datasource.dart';
 import 'package:manuk_pos/features/user/domain/repositories/user_repository.dart';
 import 'package:manuk_pos/features/user/domain/usecases/add_user.dart';
@@ -246,4 +254,20 @@ Future<void> init() async {
   sl.registerLazySingleton<DeleteCategory>(() => DeleteCategory(sl()));
 
   sl.registerFactory(() => CategoryBloc(sl(), sl(), sl(), sl(), sl()));
+
+  // Transaction
+  sl.registerLazySingleton<TransactionRemoteDataSource>(
+      () => TransactionRemoteDataSourceImpl());
+
+  sl.registerLazySingleton<TransactionRepository>(
+      () => TransactionRepositoryImpl(remoteDataSource: sl()));
+
+  sl.registerLazySingleton<GetAllTransaction>(() => GetAllTransaction(sl()));
+  sl.registerLazySingleton<GetTransactionById>(() => GetTransactionById(sl()));
+  sl.registerLazySingleton<AddTransaction>(() => AddTransaction(sl()));
+  sl.registerLazySingleton<UpdateTransactionById>(
+      () => UpdateTransactionById(sl()));
+  sl.registerLazySingleton<DeleteTransaction>(() => DeleteTransaction(sl()));
+
+  sl.registerFactory(() => TransactionBloc(sl(), sl(), sl(), sl(), sl()));
 }

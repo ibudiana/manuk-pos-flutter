@@ -19,7 +19,7 @@ class ApiConfig {
       '$baseUrl/inventories/products/$productId/suppliers';
 
   // Orders
-  static String orders() => '$baseUrl/orders';
+  static String transactions() => '$baseUrl/orders';
   //Fees
   static String fees() => '$baseUrl/orders/fees';
 

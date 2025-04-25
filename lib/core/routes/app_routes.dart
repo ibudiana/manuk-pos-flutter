@@ -34,6 +34,7 @@ import 'package:manuk_pos/features/supplier/presentation/pages/supplier_page.dar
 import 'package:manuk_pos/features/tax/domain/entities/tax.dart';
 import 'package:manuk_pos/features/tax/presentation/pages/list_tax_page.dart';
 import 'package:manuk_pos/features/tax/presentation/pages/tax_page.dart';
+import 'package:manuk_pos/features/transaction/presentation/pages/transaction_fee_page.dart';
 import 'package:manuk_pos/features/user/domain/entities/user.dart';
 import 'package:manuk_pos/features/user/presentation/pages/list_user_page.dart';
 import 'package:manuk_pos/features/user/presentation/pages/user_page.dart';
@@ -72,8 +73,18 @@ final GoRouter appRouter = GoRouter(
       ],
     ),
     GoRoute(
+      path: '/transaction',
+      builder: (context, state) => const SizedBox.shrink(),
+      routes: [
+        GoRoute(
+          path: '/list-transaction',
+          builder: (context, state) => const ListTransactionPage(),
+        ),
+      ],
+    ),
+    GoRoute(
       path: '/home',
-      builder: (context, state) => const OnboardPage(),
+      builder: (context, state) => const SizedBox.shrink(),
       routes: [
         GoRoute(
           path: 'dashboard',

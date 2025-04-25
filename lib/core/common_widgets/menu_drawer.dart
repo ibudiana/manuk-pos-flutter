@@ -123,11 +123,13 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Report'),
             children: [
               ListTile(
-                leading: const Icon(Icons.attach_money),
+                leading: const Icon(Icons.track_changes),
                 contentPadding: const EdgeInsets.only(left: 32.0),
-                title: const Text('Sales'),
+                title: const Text(
+                  'Transaction Report',
+                ),
                 onTap: () {
-                  context.go('/home/product');
+                  context.go('/transaction/list-transaction');
                 },
               ),
               ListTile(
@@ -135,7 +137,7 @@ class AppDrawer extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Stock'),
                 onTap: () {
-                  context.go('/home/category');
+                  context.go('/home');
                 },
               ),
             ],
