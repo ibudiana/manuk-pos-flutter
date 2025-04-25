@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:manuk_pos/core/common_widgets/bottom_nav.dart';
 import 'package:manuk_pos/core/common_widgets/menu_drawer.dart';
 import 'package:manuk_pos/core/common_widgets/top_nav.dart';
@@ -130,7 +131,7 @@ class ProductCard extends StatelessWidget {
                   fontSize: 12,
                   color: Colors.grey,
                 ),
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -141,7 +142,7 @@ class ProductCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Price: \$${product.sellingPrice}',
+                    '\Rp. ${NumberFormat('#,##0', 'id_ID').format(product.sellingPrice)}',
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

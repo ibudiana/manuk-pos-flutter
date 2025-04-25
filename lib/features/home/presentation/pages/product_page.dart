@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:manuk_pos/core/theme/theme.dart';
 import 'package:manuk_pos/core/common_widgets/bottom_nav.dart';
 import 'package:manuk_pos/core/common_widgets/top_nav.dart';
@@ -92,7 +93,7 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                '\$${product.sellingPrice}',
+                                'Rp ${NumberFormat('#,##0', 'id_ID').format(product.sellingPrice)}',
                                 style: AppTheme.subHeadingText,
                                 textAlign: TextAlign.center,
                               ),

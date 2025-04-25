@@ -12,9 +12,44 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(color: AppTheme.fourthColor),
-            child: Text('Menu', style: AppTheme.headingText),
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: AppTheme.fourthColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 28,
+                  backgroundColor: Colors.white,
+                  child:
+                      Icon(Icons.store, size: 30, color: AppTheme.fourthColor),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Manuk POS',
+                        style:
+                            AppTheme.headingText.copyWith(color: Colors.white),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        'Versi 1.0.0',
+                        style: TextStyle(color: Colors.white70, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.home),
@@ -78,7 +113,7 @@ class AppDrawer extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(left: 32.0),
                 title: const Text('Stock Opname'),
                 onTap: () {
-                  context.go('/inventory/stockopname/list-stock-opname');
+                  context.go('/home/product');
                 },
               ),
             ],
